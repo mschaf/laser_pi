@@ -1,2 +1,3 @@
 lib/libHeliosDacAPI.so
 __pycache__/
+tmp/
