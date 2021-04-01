@@ -2,9 +2,9 @@ import math
 
 class Animation:
 
-    def __init__(self, frame_callback, do_beat):
+    def __init__(self, frame_callback, beat_event):
         self.frame_callback = frame_callback
-        self.do_beat = do_beat
+        self.beat_event = beat_event
 
     def line_frame(self, x1, y1, x2, y2, num_points, r, g, b):
         n = num_points

@@ -1,34 +1,38 @@
-from multiprocessing import Value, Process
+from multiprocessing import Value, Process, Event
 from ctypes import c_bool
 from animations.SweepAnimation import SweepAnimation
 
-
 class AnimationProcess:
 
-    def __init__(self, laser_process):
+
+    def __init__(self, frame_callback):
         self.process = Process(target=self.__run)
         self.request_exit = Value(c_bool, False)
-        self.request_beat = Value(c_bool, False)
-        self.laser_process = laser_process
-        self.current_animation = SweepAnimation(frame_callback=self._frame_callback, do_beat=self.request_beat)
+        self.beat_event = Event()
+        self.frame_callback = frame_callback
+        self.current_animation = SweepAnimation(frame_callback, self.beat_event)
 
     def __run(self):
-        while not self.request_exit:
+        print("Animation Process start")
+        while not self.request_exit.value:
             if self.current_animation:
                 self.current_animation.loop()
+        print("Animation Process stopped")
 
-    def _frame_callback(self, frame):
-        self.laser_process.display_frame(frame)
 
     def beat(self):
-        if self.request_beat:
-            print("Warning, beat overflow")
+        print("beat requested")
+        if self.beat_event.is_set():
+            print("Warning, beat requested while previous hasn´t been cleared")
 
-        self.request_beat.value = True
+        self.beat_event.set()
 
     def start(self):
         self.process.start()
 
+
     def stop(self):
+        print("Animation Process request stop")
         self.request_exit.value = True
         self.process.join()    
+        

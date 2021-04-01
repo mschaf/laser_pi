@@ -4,6 +4,7 @@ from ctypes import c_bool
 import pyaudio
 import numpy as np
 import aubio
+import time
 
 class BeatDetectionProcess:
 
@@ -11,6 +12,8 @@ class BeatDetectionProcess:
         self.process = Process(target=self.__run)
         self.request_exit = Value(c_bool, False)
         self.beat_callback = beat_callback
+        self.last_beat_at = time.time_ns()
+        self.bpm_avg = 0
 
     def __run(self):
         print("Beat Detector Start")
@@ -42,6 +45,19 @@ class BeatDetectionProcess:
                 if is_beat:
                     # print(is_beat)
                     # print('tick')  # avoid print in audio callback
+
+                    time_now = time.time_ns()
+                    time_since_last_beat = time_now - self.last_beat_at
+
+                    bpm = 60000000000 / time_since_last_beat
+
+                    factor = 0.2
+                    self.bpm_avg = self.bpm_avg * (1-factor) + bpm * factor
+
+                    print(f"BPM: {round(self.bpm_avg)}")
+
+                    self.last_beat_at = time_now
+
                     self.beat_callback()
 
                 # print("{} / {}".format(pitch,confidence))
