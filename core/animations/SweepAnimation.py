@@ -16,10 +16,10 @@ class SweepAnimation(Animation):
         self.rand += 1
         if self.rand == 4:
             self.rand = 0
-        n = 75
+        n = 50
         r, g, b = colorsys.hsv_to_rgb(random.random(), 1, 1)
         # r,g,b = 1, 0, 1
-        num_points = 20
+        num_points = 100
 
         for i in range(n):
             p = (1.0 / n) * i

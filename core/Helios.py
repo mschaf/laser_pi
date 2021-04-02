@@ -64,7 +64,7 @@ class Helios:
         for i in range(num_points):
             helios_frame[i] = self.__map_point(frame[i])
 
-        self.helios_lib.WriteFrame(0, 5000, 0, ctypes.pointer(helios_frame), num_points)
+        self.helios_lib.WriteFrame(0, 15000, 0, ctypes.pointer(helios_frame), num_points)
 
     def close(self):
         self.helios_lib.CloseDevices()

@@ -1,6 +1,9 @@
 from multiprocessing import Value, Process, Event
 from ctypes import c_bool
 from animations.SweepAnimation import SweepAnimation
+from animations.PointsAnimation import PointsAnimation
+from animations.ThunderStormAnimation import ThunderStormAnimation
+from animations.CircleAnimation import CircleAnimation
 
 class AnimationProcess:
 
@@ -10,7 +13,7 @@ class AnimationProcess:
         self.request_exit = Value(c_bool, False)
         self.beat_event = Event()
         self.frame_callback = frame_callback
-        self.current_animation = SweepAnimation(frame_callback, self.beat_event)
+        self.current_animation = PointsAnimation(frame_callback, self.beat_event)
 
     def __run(self):
         print("Animation Process start")
