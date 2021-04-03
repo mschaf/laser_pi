@@ -23,6 +23,12 @@ class AnimationManager:
         self.last_change_at = 0
         self.counter = 0
         self.redis = Config.redis_connection()
+        self.publish_all_animations()
+
+    def publish_all_animations(self):
+        self.redis.delete(Config.redis_prefix() + 'all_animations')
+        for animation in self.all_animations():
+            self.redis.hset(Config.redis_prefix() + 'all_animations', animation['name'], animation['human_name'])
 
     def random_animation(self):
         pass
@@ -37,10 +43,10 @@ class AnimationManager:
         if self.counter > 10:
             self.counter = 0
 
-            animation_strategy = self.redis.get('laser/animation_strategy')
+            animation_strategy = self.redis.get(Config.redis_prefix() + 'animation_strategy')
 
             if animation_strategy == b'static':
-                animation_name = self.redis.get('laser/static_animation').decode("utf-8")
+                animation_name = self.redis.get(Config.redis_prefix() + 'static_animation').decode("utf-8")
 
                 animation = None
 
