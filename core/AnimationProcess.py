@@ -4,6 +4,7 @@ from animations.SweepAnimation import SweepAnimation
 from animations.PointsAnimation import PointsAnimation
 from animations.ThunderStormAnimation import ThunderStormAnimation
 from animations.CircleAnimation import CircleAnimation
+from AnimationManager import AnimationManager
 
 class AnimationProcess:
 
@@ -13,13 +14,19 @@ class AnimationProcess:
         self.request_exit = Value(c_bool, False)
         self.beat_event = Event()
         self.frame_callback = frame_callback
-        self.current_animation = PointsAnimation(frame_callback, self.beat_event)
+        self.current_animation = None
+        self.animation_manager = AnimationManager()
 
     def __run(self):
         print("Animation Process start")
         while not self.request_exit.value:
+            new_animation_class = self.animation_manager.determine_animation_class()
+            if new_animation_class:
+                self.current_animation = new_animation_class(self.frame_callback, self.beat_event)
+
             if self.current_animation:
                 self.current_animation.loop()
+
         print("Animation Process stopped")
 
 
@@ -38,4 +45,3 @@ class AnimationProcess:
         print("Animation Process request stop")
         self.request_exit.value = True
         self.process.join()    
-        
