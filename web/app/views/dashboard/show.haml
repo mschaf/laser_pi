@@ -1,0 +1,7 @@
+%h3 Dashboard
+
+- @devices.each do |device|
+  .card
+    .card-body.w-auto
+      %h5.card-title= device.name
+      .card-text= render partial: 'devices/animation_buttons', locals: { device: device }

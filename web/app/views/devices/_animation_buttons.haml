@@ -1,0 +1,3 @@
+- device.all_animations.each do |name, human_name|
+  .mb-1
+    %button.btn.btn-primary(post-button){'data-url': "/devices/#{device.id}/set_static/#{name}", 'data-params': { animation: name }.to_json }= human_name
