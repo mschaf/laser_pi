@@ -31,6 +31,21 @@ class Animation:
         return frame
 
 
+    def line_points(self, x1, y1, x2, y2, num_points):
+        n = num_points
+        points = []
+        x_delta = x2 - x1
+        y_delta = y2 - y1
+
+        for i in range(n):
+            p = math.pi / n
+            x = x1 + x_delta / n * i
+            y = y1 + y_delta / n * i
+            points.append([x, y])
+
+        return points
+
+
     def rotate(self, origin, point, angle):
         """
         Rotate a point counterclockwise by a given angle around a given origin.

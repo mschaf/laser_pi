@@ -4,6 +4,7 @@ from animations.ThunderStormAnimation import ThunderStormAnimation
 from animations.SweepAnimation import SweepAnimation
 from animations.EmptyAnimation import EmptyAnimation
 from animations.CRGBCircleAnimation import CRGBCircleAnimation
+from animations.DeathRayAnimation import DeathRayAnimation
 import Config
 import time
 
@@ -18,6 +19,7 @@ class AnimationManager:
             {'name': 'thunderstorm',     'human_name': 'Thunderstorm',     'class': ThunderStormAnimation},
             {'name': 'sweeps',           'human_name': 'Sweeps',           'class': SweepAnimation},
             {'name': 'crgb_circle',      'human_name': 'CRGB Circles',     'class': CRGBCircleAnimation},
+            {'name': 'death_ray',        'human_name': 'Death Ray',        'class': DeathRayAnimation},
         ]
 
     def __init__(self):
