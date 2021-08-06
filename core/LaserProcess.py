@@ -6,6 +6,7 @@ from Helios import Helios
 import random
 import colorsys
 import multiprocessing
+from gpiozero import LED
 
 class LaserProcess:
 
@@ -14,6 +15,7 @@ class LaserProcess:
         self.helios = Helios()
         self.request_exit = multiprocessing.Value('i', 0)
         self.queue_sweep = multiprocessing.Value('i', 0)
+        self.laser_enable = LED(23)
 
     def display_frame(self, frame):
         self.helios.send_frame(frame)
@@ -58,6 +60,7 @@ class LaserProcess:
         # self.helios.close()
 
     def start(self):
+       self.laser_enable.on()
     #    self.process.start()
 
        self.helios.open()

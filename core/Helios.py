@@ -50,7 +50,7 @@ class Helios:
    
     def __init__(self):
         self.max_brighteness = 1
-        self.helios_lib = ctypes.cdll.LoadLibrary("./lib/libHeliosDacAPI.so")
+        self.helios_lib = ctypes.cdll.LoadLibrary("/home/pi/laser_pi/lib/libHeliosDacAPI.so")
 
     def open(self):
         self.num_devices = self.helios_lib.OpenDevices()
