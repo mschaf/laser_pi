@@ -7,6 +7,7 @@ from animations.CRGBCircleAnimation import CRGBCircleAnimation
 from animations.DeathRayAnimation import DeathRayAnimation
 import Config
 import time
+import random
 
 class AnimationManager:
 
@@ -69,6 +70,21 @@ class AnimationManager:
             if animation_strategy == b'static':
                 animation_name = self.redis.get(Config.redis_prefix() + 'static_animation').decode("utf-8")
                 return self.set_current_animation_class(animation_name)
+
+            if animation_strategy == b'random':
+                animation_duration = 10000 # int(self.redis.get(Config.redis_prefix() + 'animation_duration').decode("utf-8"))
+                if ((time.time() * 1000) - self.last_change_at) > animation_duration:
+                    self.last_change_at = time.time() * 1000
+
+                    animations = list(map(lambda a: a['name'], self.all_animations()))
+                    animations.remove('no_animation')
+
+                    if self.current_animation in animations:
+                        animations.remove(self.current_animation)
+
+                    animation_name = random.choice(animations)
+
+                    return self.set_current_animation_class(animation_name)
 
             else:
                 return self.set_current_animation_class('no_animation')

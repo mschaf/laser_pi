@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :devices do
     member do
       post 'set_static/:animation', to: 'devices#set_static'
+      post 'set_random', to: 'devices#set_random'
     end
   end
 
