@@ -30,6 +30,9 @@ class Animation:
 
         return frame
 
+    def line_points_a(self, s, e, num_points):
+        return self.line_points(s[0], s[1], e[0], e[1], num_points)    
+
 
     def line_points(self, x1, y1, x2, y2, num_points):
         n = num_points
@@ -59,6 +62,6 @@ class Animation:
         qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
         return qx, qy
 
-    def circle_points(self, r,n=60):
-        return [(math.cos(2*math.pi/n*x)*r,math.sin(2*math.pi/n*x)*r) for x in range(0,n+1)]
+    def circle_points(self, r,n=60, phase=0):
+        return [(math.cos(2*math.pi/n*x + phase)*r,math.sin(2*math.pi/n*x + phase)*r) for x in range(0,n+1)]
 
