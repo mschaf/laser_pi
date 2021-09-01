@@ -3,7 +3,7 @@
 // a relevant structure within app/webpack and only use these pack files to reference
 // that code so it'll be compiled.
 
-import 'unpoly/dist/unpoly'
+import 'unpoly'
 
 let webpackContext = require.context('../javascript/blocks', true, /\.js$/)
 for(let key of webpackContext.keys()) { webpackContext(key) }

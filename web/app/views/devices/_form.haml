@@ -1,0 +1,7 @@
+= simple_form_for device, html: { 'up-target': "#edit_device_#{device.id}", 'up-history': false } do |f|
+
+  = f.input :current_animation, as: :hidden
+
+  - device.all_animations.each do |name, human_name|
+    %button.btn.btn-primary.mb-1{'set-field-and-submit': '', 'up-data': { 'field': 'device[current_animation]', value: name }.to_json }
+      = human_name

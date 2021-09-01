@@ -1,7 +1,12 @@
-%h3 Dashboard
+%div{ 'up-poll': '', 'up-interval': 200 }
 
 - @devices.each do |device|
-  .card
+  .card.m-2
     .card-body.w-auto
       %h5.card-title= device.name
-      .card-text= render partial: 'devices/animation_buttons', locals: { device: device }
+
+      .card-text
+        %h6{class: "current-animation-#{device.id}", 'up-hungry': ''}
+          Current Animation: #{device.human_current_animation}
+
+        = render partial: 'devices/form', locals: { device: device }

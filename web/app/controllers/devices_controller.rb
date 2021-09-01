@@ -1,20 +1,40 @@
 class DevicesController < ApplicationController
 
-  def set_static
+  def edit
     load_device
-    @device.set_static(params[:animation])
+    build_device
   end
 
-  def set_random
+  def update
     load_device
-    @device.set_random
+    build_device
+    save_device or render 'edit'
   end
-
 
   private
+  
+  def build_device
+    @device ||= device_scope.build
+    @device.attributes = device_params
+  end
 
+  def save_device
+    if @device.save
+      redirect_to edit_device_path(@device)
+    end
+  end
+
+  def device_params
+    device_params = params[:device]
+    device_params ? device_params.permit(:current_animation, :animation_strategy) : {}
+  end
+  
   def load_device
     @device = Device.find(params[:id])
+  end
+  
+  def device_scope
+    
   end
 
 end

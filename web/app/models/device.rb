@@ -3,21 +3,12 @@ class Device < ApplicationRecord
   validates :name, :redis_prefix, presence: true, uniqueness: true
 
   include DoesRedisAttribute[:current_animation]
+  include DoesRedisHashAttribute[:all_animations, readonly: true]
+  include DoesRedisAttribute[:animation_strategy]
 
 
-
-
-  def set_static(animation)
-    REDIS_CLIENT.set(redis_prefix + 'animation_strategy', 'static')
-    REDIS_CLIENT.set(redis_prefix + 'static_animation', animation)
-  end
-
-  def set_random
-    REDIS_CLIENT.set(redis_prefix + 'animation_strategy', 'random')
-  end
-
-  def all_animations
-    REDIS_CLIENT.hgetall(redis_prefix + 'all_animations')
+  def human_current_animation
+    all_animations.fetch(current_animation, '')
   end
 
 

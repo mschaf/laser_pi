@@ -7281,10 +7281,10 @@ unpipe@1.0.0, unpipe@~1.0.0:
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
 
-unpoly@^0.62.1:
-  version "0.62.1"
-  resolved "https://registry.yarnpkg.com/unpoly/-/unpoly-0.62.1.tgz#cfb516dec558b78137c10e3d5b248bba6b30b310"
-  integrity sha512-o9vlE09weFv176U7CWt7/KLO4vPSq1t1aYuAH9HVFKZ6favlfcQ2dy+GVjIANuyDg3joqrz01lNRMulOmCvMJw==
+unpoly@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/unpoly/-/unpoly-2.3.0.tgz#359fc28c56977c07f1ed60fa6c58bd1aeb6bb1a1"
+  integrity sha512-jcwjwLcQ7mhTUjG6py11DFtZSDlczH2W2v4GKXLzbhy1CZDGuHo85zmVtQlrJCYNh2o254gW4RI7w+AKW259oA==
 
 unquote@~1.1.1:
   version "1.1.1"

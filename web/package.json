@@ -7,7 +7,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.2.1",
     "bootstrap": "^5.0.0-beta3",
-    "unpoly": "^0.62.1"
+    "unpoly": "^2.3.0"
   },
   "version": "0.1.0",
   "devDependencies": {
