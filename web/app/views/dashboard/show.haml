@@ -1,4 +1,4 @@
-%div{ 'up-poll': '', 'up-interval': 200 }
+%div.poller{ 'up-poll': '', 'up-interval': 300 }
 
 - @devices.each do |device|
   .card.m-2
@@ -8,5 +8,8 @@
       .card-text
         %h6{class: "current-animation-#{device.id}", 'up-hungry': ''}
           Current Animation: #{device.human_current_animation}
+          %br
+          #{" #{device.ready}" if device.ready.present? }
+
 
         = render partial: 'devices/form', locals: { device: device }

@@ -1,0 +1,8 @@
+%div.poller{ 'up-poll': '', 'up-interval': 200 }
+
+- @devices.each do |device|
+
+  %h6{class: "current-animation-#{device.id}", 'up-hungry': ''}
+    Current Animation: #{device.human_current_animation}
+    %br
+    #{" #{device.ready}" if device.ready.present? }

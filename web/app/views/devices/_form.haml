@@ -2,6 +2,31 @@
 
   = f.input :current_animation, as: :hidden
 
+  - no_strategy = (device.redis_prefix.include? 'smoke')
+
+  - unless no_strategy
+    = f.input :animation_strategy, collection: [['static_animation', 'Static Animation'], ['random', 'Zufall']], value_method: :first, name_method: :last, input_html: { 'up-autosubmit': ''}
+    .mt-2
+
   - device.all_animations.each do |name, human_name|
-    %button.btn.btn-primary.mb-1{'set-field-and-submit': '', 'up-data': { 'field': 'device[current_animation]', value: name }.to_json }
-      = human_name
+    - random_weights = (JSON.parse(device.random_weights) if device.random_weights.present?) || {}
+    - random_weights.transform_values!(&:to_f)
+
+    - random_durations = (JSON.parse(device.random_durations) if device.random_durations.present?) || {}
+    - random_durations.transform_values!(&:to_f)
+    .row.w-auto
+      .col-4
+        %button.btn.btn-primary.mb-1.w-auto{'set-field-and-submit': '', 'up-data': { 'field': 'device[current_animation]', value: name }.to_json }
+          = human_name
+      - unless no_strategy
+        .col-4
+          .row
+            .col
+              %input.form-range.mt-2{ type: 'range', min: 0, max: 1, step: 0.01, name: "device[random_weights[#{name}]]", value: random_weights[name] || 1 }
+            %output.col-auto
+
+        .col-4
+          .row
+            .col
+              %input.form-range.mt-2{ type: 'range', min: 1, max: 60, step: 1, name: "device[random_durations[#{name}]]", value: random_durations[name] || 20 }
+            %output.col-auto{'up-data': { round: true }.to_json }
