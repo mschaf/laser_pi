@@ -2,6 +2,7 @@ from animations.Animation import Animation
 import random
 import colorsys
 import time
+import Config
 
 class FanPointsAnimation(Animation):
 
@@ -32,7 +33,7 @@ class FanPointsAnimation(Animation):
         if self.w < 0.5:
             self.w += 0.02
 
-        self.points = self.line_points(0.5 - self.w, 0.5, 0.5 + self.w, 0.5, 11)
+        self.points = self.line_points(0.5 - self.w, Config.line_animation_height(), 0.5 + self.w, Config.line_animation_height(), 11)
 
         frame = []
 
@@ -41,8 +42,9 @@ class FanPointsAnimation(Animation):
             next_point = self.points[self.ii(i + 1)]
 
             frame = frame + [{'x': point[0], 'y': point[1], 'r': 0, 'g': 0, 'b': 0}] * 5
-            frame = frame + [{'x': point[0], 'y': point[1], 'r': self.color[0], 'g': self.color[1], 'b': self.color[2]}] * 15
-            # frame = frame + self.line_frame(point[0], point[1], next_point[0], next_point[1], 1, 0, 0, 0)
+            frame = frame + [{'x': point[0], 'y': point[1], 'r': self.color[0], 'g': self.color[1], 'b': self.color[2]}] * 20
+            
+           #  frame = frame + self.line_frame(next_point[0], next_point[1], point[0], point[1], 10, 0, 0, 0)
 
         self.frame_callback(frame)
 

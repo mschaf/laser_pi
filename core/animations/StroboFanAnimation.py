@@ -2,6 +2,7 @@ from animations.Animation import Animation
 import random
 import colorsys
 import time
+import Config
 
 class StroboFanAnimation(Animation):
 
@@ -28,7 +29,7 @@ class StroboFanAnimation(Animation):
             self.color = colorsys.hsv_to_rgb(0 , 0, 0)
 
 
-        frame = self.line_frame(0, 0.5, 1, 0.5, 100, self.color[0], self.color[1], self.color[2])
+        frame = self.line_frame(0, Config.line_animation_height(), 1, Config.line_animation_height(), 200, self.color[0], self.color[1], self.color[2])
 
         # self.points = self.line_points()
 

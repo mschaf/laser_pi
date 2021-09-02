@@ -5,3 +5,6 @@ def redis_connection():
 
 def redis_prefix():
     return '/laser/0/'
+
+def line_animation_height():
+    return 0

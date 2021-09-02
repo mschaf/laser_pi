@@ -76,5 +76,11 @@ class Helios:
         r = (int) (point['r'] * self.max_brighteness * 255.0)
         g = (int) (point['g'] * self.max_brighteness * 255.0)
         b = (int) (point['b'] * self.max_brighteness  * 255.0) 
+
+        x = min(4095, x)
+        x = max(0, x)
+        y = min(4095, y)
+        y = max(0, y)
         
+
         return HeliosPoint(x, y, r, g, b, 50)

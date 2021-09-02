@@ -2,6 +2,7 @@ from animations.Animation import Animation
 import random
 import colorsys
 import time
+import Config
 
 class SweepingFanAnimation(Animation):
 
@@ -36,23 +37,23 @@ class SweepingFanAnimation(Animation):
         self.x2 += self.v2
 
         if self.x1 > 1:
-            self.v1 = random.random() * -0.1
+            self.v1 = random.random() * -0.1 - 0.01
             self.x1 += self.v1
 
         if self.x1 < 0:
-            self.v1 = random.random() * 0.1
+            self.v1 = random.random() * 0.1 + 0.01
             self.x1 += self.v1
 
         if self.x2 > 1:
-            self.v2 = random.random() * -0.1
+            self.v2 = random.random() * -0.1 - 0.01
             self.x2 += self.v2
 
         if self.x2 < 0:
-            self.v2 = random.random() * 0.1
+            self.v2 = random.random() * 0.1 + 0.01
             self.x2 += self.v2
 
 
-        frame = self.line_frame(self.x1, 0.5, self.x2, 0.5, 100, self.color[0], self.color[1], self.color[2])
+        frame = self.line_frame(self.x1, Config.line_animation_height(), self.x2, Config.line_animation_height(), 200, self.color[0], self.color[1], self.color[2])
 
         # self.points = self.line_points()
 

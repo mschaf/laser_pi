@@ -10,6 +10,8 @@ from animations.FanPointsAnimation import FanPointsAnimation
 from animations.SweepingFanPointsAnimation import SweepingFanPointsAnimation
 from animations.SweepingFanAnimation import SweepingFanAnimation
 from animations.StroboFanAnimation import StroboFanAnimation
+from animations.RGBDeathRayAnimation import RGBDeathRayAnimation
+from animations.RGBThunderStormAnimation import RGBThunderStormAnimation
 import Config
 import time
 import random
@@ -31,6 +33,8 @@ class AnimationManager:
             {'name': 'sweeping_fan_points',   'human_name': 'Sweeping Fan Points',   'class': SweepingFanPointsAnimation},
             {'name': 'sweeping_fan',          'human_name': 'Sweeping Fan',          'class': SweepingFanAnimation},
             {'name': 'strobo_fan',            'human_name': 'Strobo Fan',            'class': StroboFanAnimation},
+            {'name': 'rgb_death_ray',         'human_name': 'RGB Death Ray',         'class': RGBDeathRayAnimation},
+            {'name': 'rgb_thunderstorm',      'human_name': 'RGB Thunderstorm',      'class': RGBThunderStormAnimation},
         ]
 
     def __init__(self):
@@ -40,6 +44,7 @@ class AnimationManager:
         self.counter = 0
         self.redis = Config.redis_connection()
         self.publish_all_animations()
+        self.redis.set(Config.redis_prefix() + 'current_animation', 'no_animation')
         print("Published Animations")
 
     def publish_all_animations(self):
