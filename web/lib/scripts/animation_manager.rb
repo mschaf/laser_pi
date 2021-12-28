@@ -1,5 +1,7 @@
 devices = Device.all.to_a
 
+puts "Animation Manager"
+
 while true
 
   devices.each do |device|

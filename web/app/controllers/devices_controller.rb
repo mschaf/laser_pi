@@ -20,7 +20,7 @@ class DevicesController < ApplicationController
 
   def save_device
     @device.random_weights = params[:device][:random_weights].to_json
-    @device.random_durations = params[:device][:random_durations].transform_values(&:to_f).to_json
+    @device.random_durations = params[:device][:random_durations]&.transform_values(&:to_f)&.to_json
     if @device.save
       redirect_to edit_device_path(@device)
     end

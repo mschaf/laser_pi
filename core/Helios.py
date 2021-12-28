@@ -71,8 +71,8 @@ class Helios:
 
 
     def __map_point(self, point):
-        x = (int) (point['x'] * 4096 ) #  * 0.5 + 1000
-        y = (int) (point['y'] * 4096 * 0.5 + 1900)
+        x = (int) (point['x'] * 4096 * 0.7 + 600) #  
+        y = (int) (point['y'] * 4096 * 0.7 + 1000)
         r = (int) (point['r'] * self.max_brighteness * 255.0)
         g = (int) (point['g'] * self.max_brighteness * 255.0)
         b = (int) (point['b'] * self.max_brighteness  * 255.0) 

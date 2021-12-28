@@ -5,6 +5,7 @@ import random
 from LaserProcess import LaserProcess
 from AnimationProcess import AnimationProcess
 from BeatDetectionProcess import BeatDetectionProcess
+from ArtNetBeatProcess import ArtNetBeatProcess
 
 def beat_callback():
     print("Beat")

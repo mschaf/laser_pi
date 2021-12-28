@@ -12,6 +12,11 @@ from animations.SweepingFanAnimation import SweepingFanAnimation
 from animations.StroboFanAnimation import StroboFanAnimation
 from animations.RGBDeathRayAnimation import RGBDeathRayAnimation
 from animations.RGBThunderStormAnimation import RGBThunderStormAnimation
+from animations.FireworksAnimation import FireworksAnimation
+from animations.MovingLineAnimation import MovingLineAnimation
+from animations.CrazyLinesAnimation import CrazyLinesAnimation
+from animations.FlippingLineAnimation import FlippingLineAnimation
+
 import Config
 import time
 import random
@@ -35,6 +40,10 @@ class AnimationManager:
             {'name': 'strobo_fan',            'human_name': 'Strobo Fan',            'class': StroboFanAnimation},
             {'name': 'rgb_death_ray',         'human_name': 'RGB Death Ray',         'class': RGBDeathRayAnimation},
             {'name': 'rgb_thunderstorm',      'human_name': 'RGB Thunderstorm',      'class': RGBThunderStormAnimation},
+            {'name': 'moving_line',           'human_name': 'Moving Line',           'class': MovingLineAnimation},
+            {'name': 'crazy_lines',           'human_name': 'Crazy Lines',           'class': CrazyLinesAnimation},
+            {'name': 'flipping_line',         'human_name': 'Flipping Line',         'class': FlippingLineAnimation},
+            {'name': 'fireworks',             'human_name': 'Fireworks',             'class': FireworksAnimation},
         ]
 
     def __init__(self):
